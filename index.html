@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Planilla de Partido de Tenis</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 5px;
+        }
+
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Planilla de Partido de Tenis</h1>
+
+    <table>
+        <tr>
+            <th>Urquiza C7 A</th>
+            <th>Rival</th>
+        </tr>
+        <tr>
+            <td><input type="number" id="juegosA1" value="0" oninput="actualizarPartido()"></td>
+            <td><input type="number" id="juegosB1" value="0" oninput="actualizarPartido()"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="juegosA2" value="0" oninput="actualizarPartido()"></td>
+            <td><input type="number" id="juegosB2" value="0" oninput="actualizarPartido()"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="juegosA3" value="0" oninput="actualizarPartido()"></td>
+            <td><input type="number" id="juegosB3" value="0" oninput="actualizarPartido()"></td>
+        </tr>
+    </table>
+
+    <h2>Resultado del Partido:</h2>
+    <p id="resultado">0-0, 0-0, 0-0</p>
+
+    <script>
+        function actualizarPartido() {
+            var juegosA1 = parseInt(document.getElementById("juegosA1").value);
+            var juegosB1 = parseInt(document.getElementById("juegosB1").value);
+            var juegosA2 = parseInt(document.getElementById("juegosA2").value);
+            var juegosB2 = parseInt(document.getElementById("juegosB2").value);
+            var juegosA3 = parseInt(document.getElementById("juegosA3").value);
+            var juegosB3 = parseInt(document.getElementById("juegosB3").value);
+
+            var resultado = juegosA1 + "-" + juegosB1 + ", " + juegosA2 + "-" + juegosB2 + ", " + juegosA3 + "-" + juegosB3;
+            document.getElementById("resultado").textContent = resultado;
+        }
+    </script>
+</body>
+
+</html>
