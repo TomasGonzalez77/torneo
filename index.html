@@ -26,22 +26,31 @@
 </head>
 
 <body>
-    <h1>Planilla de Partido de Tenis</h1>
+    <h1>PLANILLA TORNEO LARGO INTERCLUBES</h1>
+
+    <h2>Jugador A</h2>
+    <input type="text" id="nombreA" placeholder="Nombre del Jugador A">
+    <h2>Jugador B</h2>
+    <input type="text" id="nombreB" placeholder="Nombre del Jugador B">
 
     <table>
         <tr>
-            <th>Urquiza C7 A</th>
-            <th>Rival</th>
+            <th></th>
+            <th>Jugador A</th>
+            <th>Jugador B</th>
         </tr>
         <tr>
+            <th>Set 1</th>
             <td><input type="number" id="juegosA1" value="0" oninput="actualizarPartido()"></td>
             <td><input type="number" id="juegosB1" value="0" oninput="actualizarPartido()"></td>
         </tr>
         <tr>
+            <th>Set 2</th>
             <td><input type="number" id="juegosA2" value="0" oninput="actualizarPartido()"></td>
             <td><input type="number" id="juegosB2" value="0" oninput="actualizarPartido()"></td>
         </tr>
         <tr>
+            <th>Set 3</th>
             <td><input type="number" id="juegosA3" value="0" oninput="actualizarPartido()"></td>
             <td><input type="number" id="juegosB3" value="0" oninput="actualizarPartido()"></td>
         </tr>
@@ -52,6 +61,8 @@
 
     <script>
         function actualizarPartido() {
+            var nombreA = document.getElementById("nombreA").value;
+            var nombreB = document.getElementById("nombreB").value;
             var juegosA1 = parseInt(document.getElementById("juegosA1").value);
             var juegosB1 = parseInt(document.getElementById("juegosB1").value);
             var juegosA2 = parseInt(document.getElementById("juegosA2").value);
@@ -59,10 +70,111 @@
             var juegosA3 = parseInt(document.getElementById("juegosA3").value);
             var juegosB3 = parseInt(document.getElementById("juegosB3").value);
 
-            var resultado = juegosA1 + "-" + juegosB1 + ", " + juegosA2 + "-" + juegosB2 + ", " + juegosA3 + "-" + juegosB3;
+            var resultado = nombreA + " " + juegosA1 + "-" + juegosB1 + ", " + juegosA2 + "-" + juegosB2 + ", " + juegosA3 + "-" + juegosB3 + " " + nombreB;
             document.getElementById("resultado").textContent = resultado;
         }
     </script>
+    <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Planilla de Partidos de Tenis</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 5px;
+        }
+
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Planilla de Partidos de Tenis</h1>
+
+    <h2>Jugador A</h2>
+    <input type="text" id="nombreA" placeholder="Nombre del Jugador A">
+    <h2>Jugador B</h2>
+    <input type="text" id="nombreB" placeholder="Nombre del Jugador B">
+    <button onclick="agregarPartido()">Guardar Partido</button>
+
+    <table>
+        <tr>
+            <th>Partido</th>
+            <th>Jugador A</th>
+            <th>Jugador B</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><span id="resultadoA1">0</span></td>
+            <td><span id="resultadoB1">0</span></td>
+        </tr>
+    </table>
+
+    <h2>Resultados de Partidos:</h2>
+    <table id="tablaResultados">
+        <tr>
+            <th>Partido</th>
+            <th>Jugador A</th>
+            <th>Jugador B</th>
+        </tr>
+    </table>
+
+    <script>
+        var partidos = [];
+        var numeroPartido = 1;
+
+        function agregarPartido() {
+            var nombreA = document.getElementById("nombreA").value;
+            var nombreB = document.getElementById("nombreB").value;
+
+            var resultadoA = parseInt(document.getElementById("resultadoA1").textContent);
+            var resultadoB = parseInt(document.getElementById("resultadoB1").textContent);
+
+            var partido = {
+                numero: numeroPartido,
+                nombreA: nombreA,
+                nombreB: nombreB,
+                resultadoA: resultadoA,
+                resultadoB: resultadoB
+            };
+
+            partidos.push(partido);
+
+            // Agregar el partido a la tabla de resultados
+            var tablaResultados = document.getElementById("tablaResultados");
+            var row = tablaResultados.insertRow();
+            var cellNumero = row.insertCell(0);
+            var cellNombreA = row.insertCell(1);
+            var cellNombreB = row.insertCell(2);
+            cellNumero.innerHTML = numeroPartido;
+            cellNombreA.innerHTML = nombreA;
+            cellNombreB.innerHTML = nombreB;
+
+            // Reiniciar valores para el próximo partido
+            numeroPartido++;
+            document.getElementById("nombreA").value = "";
+            document.getElementById("nombreB").value = "";
+            document.getElementById("resultadoA1").textContent = "0";
+            document.getElementById("resultadoB1").textContent = "0";
+        }
+    </script>
+</body>
+
+</html>
+
 </body>
 
 </html>
